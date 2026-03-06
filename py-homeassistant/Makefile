@@ -1,6 +1,6 @@
 # $NetBSD$
 
-PKGNAME=	${PYPKGPREFIX}-homeassistant-0.08
+PKGNAME=	${PYPKGPREFIX}-homeassistant-0.10
 CATEGORIES=	meta-pkgs
 
 MAINTAINER=	gdt@NetBSD.org
@@ -14,8 +14,9 @@ LICENSE=	modified-bsd
 
 META_PACKAGE=	yes
 
-# This package is currently tuned for and tested on NetBSD/amd64 9 and
-# 10.
+# This package is currently tuned for and tested on NetBSD/amd64 10.
+# As of 2026-03, NetBSD 9 is abandoned, and NetBSD 11 support has not
+# yet been started.
 
 # Home Assistant (HA) upstream pins exact dependencies as a general
 # practice, and this is incompatible with packaging systems.  Thus,
@@ -26,22 +27,16 @@ META_PACKAGE=	yes
 # dependencies; we steer to the union of reasonable installations,
 # erring on the side of depending on more rather than less.
 
-# Despite depending on programs that are build tools, record a full
-# dependency so that "pkgin ar" after installing this package will not
-# remove e.g. the rust compiler.  The point is that while that's a
-# build-time dependency in pkgsrc, it's a run-time dependency for this
-# package, because the user will do builds when this package is
-# installed.
-
-# The vast majority of HA components are just python (perhaps a chain
-# of dependencies) and build straightforwardly with "bin/pip install";
-# these are therefore not addressed here.
+# Even for packages that are normally thought of as build tools,
+# record a full dependency.  The point is that a user will, after this
+# package is installed, use those tools to build HA.
 
 ## PYTHON
 
 # HA 2024.4 requires 3.12
 # HA 2025.2 requires 3.13
-PYTHON_VERSIONS_ACCEPTED=313
+# HA 2026.2 requires 3.14
+PYTHON_VERSIONS_ACCEPTED=314
 .include "../../lang/python/pyversion.mk"
 
 # Building HA in a venv requires virtualenv
@@ -56,14 +51,12 @@ DEPENDS+=	cmake-[0-9]*:../../devel/cmake
 DEPENDS+=	pkgconf-[0-9]*:../../devel/pkgconf
 
 # GCC
-# \todo Depend on gcc10, because numpy needs it, and venv build
-# scripts will thus require it.  For now, requiring gfortran 10 adds
-# the dependency.
+# On NetBSD 10, require gcc 10 to match.
+# \todo For NetBSD 11, require gcc12.
+GFORTRAN_VERSION=	10
 
 # FORTRAN
 USE_LANGUAGES+=	fortran77
-# Assume that mk/compiler/gfortran.mk will choose an appropriate
-# gfortran version based on base gcc, OS, and CPU.
 .include "../../mk/compiler/gfortran.mk"
 
 RUST_RUNTIME=	yes		# record a dependency
@@ -84,8 +77,8 @@ RUST_RUNTIME=	yes		# record a dependency
 # controlling dependencies.
 DEPENDS+=	openblas-[0-9]*:../../math/openblas
 
-# HA installs yaml \todo despite it not showing in bin/pip freeze
-# \todo Figure out if this is really needed.
+# HA culture uses yaml enough that I say it should be installed on the
+# host for use, even if there will be a copy in the venv.
 DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
 
 # HA will build various python modules via pip; depend on them to
@@ -99,7 +92,7 @@ DEPENDS+=	${PYPKGPREFIX}-grpcio-[0-9]*:../../net/py-grpcio
 DEPENDS+=	ffmpeg7-[0-9]*:../../multimedia/ffmpeg7
 
 # onvif integration requires onvif_zeep_async which depends on lxml
-# depends on libxml2 and libxslt.
+# which depends on libxml2 and libxslt.
 DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2
 DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 
