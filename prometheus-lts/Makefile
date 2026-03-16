@@ -16,6 +16,7 @@ LICENSE=	apache-2.0
 PROMETHEUS_WEB_UI=		prometheus-web-ui-3.5.1.tar.gz
 SITES.${PROMETHEUS_WEB_UI}=	https://github.com/prometheus/prometheus/releases/download/v3.5.1/
 DISTFILES=			${DEFAULT_DISTFILES} ${PROMETHEUS_WEB_UI}
+EXTRACT_ONLY=			${DEFAULT_DISTFILES} ${PROMETHEUS_WEB_UI}
 
 GO_DIST_BASE=	${DISTNAME}
 GO_SRCPATH=	github.com/prometheus/prometheus
@@ -53,6 +54,13 @@ INSTALLATION_DIRS+=	${EXAMPLE_DIR} ${WEBUI_DIR}
 
 .for f in ${EXAMPLE_FILES}
 CONF_FILES+=	${EXAMPLE_DIR}/${f} ${PKG_SYSCONFDIR}/${f}
+.endfor
+
+post-extract:
+	${CHMOD} -x ${WRKDIR}/static/react-app/favicon.ico ${WRKDIR}/static/react-app/manifest.json
+	${MKDIR} ${WRKSRC}/web/ui/static
+.for d in mantine-ui react-app
+	${CP} -R ${WRKDIR}/static/${d} ${WRKSRC}/web/ui/static
 .endfor
 
 do-build:
