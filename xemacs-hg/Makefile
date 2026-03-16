@@ -24,7 +24,7 @@ LIBDIR=			${PREFIX}/lib/${DISTNAME}
 
 .include "../../mk/bsd.prefs.mk"
 
-USE_TOOLS+=		perl makeinfo
+USE_TOOLS+=		pkg-config perl makeinfo
 TEXINFO_REQD=		4.12
 
 TOOL_DEPENDS+=		gtexinfo>=4.12:../../devel/gtexinfo
@@ -52,9 +52,18 @@ INSTALL_MAKE_FLAGS+=	TAR=${TOOLS_PATH.gtar}
 CPPFLAGS+=	-DTERMINFO
 .endif
 
+SUBST_CLASSES+=		paths
+SUBST_MESSAGE.paths=	Fixing script interpreter path
+SUBST_STAGE.paths=	pre-configure
+SUBST_FILES.paths=	lisp/ellcc.el
+SUBST_SED.paths=	-E -e "s,^\#!.[^ ]+ (.+),\#!${PREFIX}/bin/\1,g"
+
 # Having the build path in the dumped emacs is not a problem.
 CHECK_WRKREF_SKIP+=	bin/xemacs*
 CHECK_WRKREF_SKIP+=	lib/xemacs-*/xemacs*.dmp
+
+# configure just recording the tool paths used for the build
+CHECK_WRKREF_SKIP+=	lib/xemacs-21.5-b36/x86_64--netbsd/config.values
 
 # The portable dumper creates a dump file with a build ID in its name
 PRINT_PLIST_AWK+=	{ gsub(/-[a-z0-9]+\.dmp$$/, "-$${XEMACS_DUMPID}.dmp"); }

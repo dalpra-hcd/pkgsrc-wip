@@ -11,7 +11,7 @@ Prefix {c,e}tags to avoid conflicts.
 
 Make TAR settable, to work around shortcomings in base tar(1)
 
---- Makefile.in.in.orig	2025-05-15 14:32:16.075154519 +0000
+--- Makefile.in.in.orig	2026-03-16 13:45:47.000000000 +0000
 +++ Makefile.in.in
 @@ -67,7 +67,7 @@ LC_ALL = C
  RM = rm -f
@@ -22,7 +22,7 @@ Make TAR settable, to work around shortcomings in base tar(1)
  
  ## ==================== Things `configure' Might Edit ====================
  
-@@ -416,11 +416,11 @@ install-arch-dep: mkdir
+@@ -419,11 +419,11 @@ install-arch-dep: mkdir
  	   fi; \
  	   ${INSTALL_DATA} lib-src/config.values $(DESTDIR)${docdir}/config.values; \
  	   ${INSTALL_DATA} lib-src/DOC $(DESTDIR)${docdir}/DOC-`src/${PROGNAME} -sd`; \
@@ -36,7 +36,7 @@ Make TAR settable, to work around shortcomings in base tar(1)
  #endif
  #ifdef WIN32_NATIVE
  	${INSTALL_PROGRAM} src/${PROGNAME} $(DESTDIR)${bindir}/${PROGNAME}
-@@ -439,7 +439,8 @@ install-arch-dep: mkdir
+@@ -443,7 +443,8 @@ install-arch-dep: mkdir
  # endif /* CYGWIN */
  #endif /* WIN32_NATIVE */
  #ifdef HAVE_SHLIB
@@ -46,7 +46,7 @@ Make TAR settable, to work around shortcomings in base tar(1)
  #endif
  
  install-arch-indep: mkdir info
-@@ -474,14 +475,19 @@ install-arch-indep: mkdir info
+@@ -478,15 +479,20 @@ install-arch-indep: mkdir info
  	    ${INSTALL_DATA} ${srcdir}/info/dir $(DESTDIR)${infodir}/dir ; \
  	  fi ; \
  	  for file in *.info* ; do \
@@ -55,6 +55,8 @@ Make TAR settable, to work around shortcomings in base tar(1)
  	    chmod 0644 $(DESTDIR)${infodir}/$${file}; \
  	  done ; \
  	fi
+-	chmod 0755 ${lispdir}/ellcc.elc
++	chmod 0755 $(DESTDIR)${lispdir}/ellcc.elc
  	cd ${srcdir}/etc && \
  	  for page in xemacs etags ctags gnuserv gnuclient gnuattach gnudoit; do \
 -	    ${INSTALL_DATA} ${srcdir}/etc/$${page}.1 $(DESTDIR)${mandir}/$${page}${manext} ; \
