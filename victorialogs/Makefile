@@ -4,7 +4,7 @@ PKGNAME=	${DISTNAME:tl}
 
 COMMENT=	Fast and easy to use database for logs
 
-GO_BUILD_PATTERN+=	-ldflags ' \
+GOFLAGS+=		-ldflags ' \
 			-X github.com/VictoriaMetrics/VictoriaMetrics/lib/buildinfo.Version=victoria-logs-${PKGVERSION_NOREV}'
 GO_BUILD_PATTERN+=	./app/victoria-logs
 
