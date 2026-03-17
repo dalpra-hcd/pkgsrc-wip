@@ -5371,6 +5371,7 @@ SUBDIR+=	scourge
 SUBDIR+=	scr2png
 SUBDIR+=	scrc
 SUBDIR+=	scrcpy
+SUBDIR+=	scrot
 SUBDIR+=	scsh-install-lib
 SUBDIR+=	scummvm-bass
 SUBDIR+=	scummvm-fotaq
