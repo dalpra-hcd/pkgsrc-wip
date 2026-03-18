@@ -12,6 +12,7 @@ lib/sfwbar/network.so
 lib/sfwbar/xkbmap.so
 man/man1/sfwbar-appmenu.1
 man/man1/sfwbar-bluez.1
+man/man1/sfwbar-dbus.1
 man/man1/sfwbar-idle.1
 man/man1/sfwbar-idleinhibit.1
 man/man1/sfwbar-mpd.1
@@ -27,7 +28,6 @@ share/locale/zh_TW/LC_MESSAGES/sfwbar.mo
 share/sfwbar/alsa.widget
 share/sfwbar/backlight.source
 share/sfwbar/backlight.widget
-share/sfwbar/battery-svg.widget
 share/sfwbar/battery.source
 share/sfwbar/battery.widget
 share/sfwbar/bluez-popup.widget
@@ -52,6 +52,8 @@ share/sfwbar/desktop-directories/Utility.directory
 share/sfwbar/fan-rpm.widget
 share/sfwbar/icons/misc/comp.svg
 share/sfwbar/icons/misc/cpu.svg
+share/sfwbar/icons/misc/dialog-cancel-symbolic.svg
+share/sfwbar/icons/misc/dialog-ok-symbolic.svg
 share/sfwbar/icons/misc/fan.svg
 share/sfwbar/icons/misc/fforward.svg
 share/sfwbar/icons/misc/hibernate-symbolic.svg
@@ -149,7 +151,7 @@ share/sfwbar/icons/weather/snowshowers_polartwilight.svg
 share/sfwbar/icons/weather/snowshowersandthunder_day.svg
 share/sfwbar/icons/weather/snowshowersandthunder_night.svg
 share/sfwbar/icons/weather/snowshowersandthunder_polartwilight.svg
-share/sfwbar/idle.widget
+share/sfwbar/idleinhibit.widget
 share/sfwbar/lan-bps.widget
 share/sfwbar/language.widget
 share/sfwbar/mb-temp.widget
@@ -162,7 +164,7 @@ share/sfwbar/mpd-module.widget
 share/sfwbar/mpd.source
 share/sfwbar/mpd.widget
 share/sfwbar/ncenter.widget
-share/sfwbar/network-module.widget
+share/sfwbar/network.widget
 share/sfwbar/oneline.config
 share/sfwbar/privacy.widget
 share/sfwbar/rfkill-bt.widget
@@ -174,7 +176,6 @@ share/sfwbar/showdesktop.widget
 share/sfwbar/startmenu.source
 share/sfwbar/startmenu.widget
 share/sfwbar/swap.source
-share/sfwbar/sway-lang.widget
 share/sfwbar/switcher.config
 share/sfwbar/t2.config
 share/sfwbar/twoline.config
@@ -197,5 +198,6 @@ share/sfwbar/wbar-sway-lang.widget
 share/sfwbar/wbar-temp.widget
 share/sfwbar/wbar.config
 share/sfwbar/weather.widget
+share/sfwbar/wifi-secret.widget
 share/sfwbar/wifi.widget
 share/sfwbar/winops.widget

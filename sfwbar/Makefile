@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	sfwbar-1.0_beta16.1
+DISTNAME=	sfwbar-1.0_beta17
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=LBCrion/}
-GITHUB_TAG=	d30db7c77fde25093f55eae8203f5a4995768152
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	kikadf.01@gmail.com
 HOMEPAGE=	https://github.com/LBCrion/sfwbar/
@@ -14,6 +14,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/sfwbar
 
+MESON_ARGS+=	-Dbsdctl=disabled
 MESON_ARGS+=	-Dpulse=disabled
 MESON_ARGS+=	-Dpipewire=disabled
 MESON_ARGS+=	-Dalsa=disabled
@@ -21,6 +22,9 @@ MESON_ARGS+=	-Diwd=disabled
 MESON_ARGS+=	-Dnm=disabled
 MESON_ARGS+=	-Dxkb=enabled
 MESON_ARGS+=	-Ddbus=enabled
+
+post-install:
+	${RM} ${DESTDIR}${PREFIX}/share/sfwbar/memory.source.orig
 
 .include "../../wip/gtk-layer-shell/buildlink3.mk"
 
