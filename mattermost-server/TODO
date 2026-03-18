@@ -18,7 +18,6 @@ Build errors from build log -- grep "^#" /var/tmp/mattermost.buildlog
 cmd/mmctl/client/client.go:178:58: undefined: model.ReportPostOptions
 cmd/mmctl/client/client.go:178:90: undefined: model.ReportPostOptionsCursor
 cmd/mmctl/client/client.go:178:123: undefined: model.ReportPostListResponse
-github.com/mattermost/mattermost/server/v8/scripts/config_generator
 
 # github.com/mattermost/mattermost/server/v8/cmd/mmctl/mocks
 cmd/mmctl/mocks/client_mock.go:1248:76: undefined: model.ReportPostOptions
