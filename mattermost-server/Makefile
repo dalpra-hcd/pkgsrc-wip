@@ -14,6 +14,8 @@ LICENSE=	gnu-lgpl-v3 AND apache-2.0
 
 WRKSRC=		${WRKDIR}/mattermost-${PKGVER}/server
 
+PKGTOOLS+=	gmake
+
 PKG_SYSCONFSUBDIR=	mattermost
 
 #GO_VERSION_REQD=	125
