@@ -70,8 +70,6 @@ OWN_DIRS+=		${MATTERMOST_DATADIR}
 OWN_DIRS_PERMS+=	${MATTERMOST_DATADIR}/data ${MATTERMOST_USER} \
 				${MATTERMOST_GROUP} 0750
 
-.include "go-modules.mk"
-
 .include "../../lang/go/go-module.mk"
 
 .include "../../graphics/png/buildlink3.mk"
