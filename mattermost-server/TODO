@@ -5,7 +5,8 @@ Building Mattermost collaboration server on NetBSD
 
 ### Build
 
-Build errors from build log -- grep "^#" /var/tmp/mattermost.buildlog 
+Build errors from build log -- grep "^#" /var/tmp/mattermost.buildlog,
+or re-run 'make'
 
 # modernc.org/sqlite/lib
 ../../.gopath/pkg/mod/modernc.org/sqlite@v1.39.1/lib/sqlite_netbsd_amd64.go:112447:5: mu.enter undefined (type mutex has no field or method enter)
@@ -46,9 +47,6 @@ einterfaces/autotranslation.go:52:85: undefined: model.Translation
 Older releases have different modules error out.
 
 
-files/mattermost.sh: Convert to pkgsrc
-
-
 ### Installation
 
 Directories:
@@ -70,6 +68,19 @@ post-install:
 	${MKDIR} ${STAGEDIR}${WWWDIR}/templates
 	cd ${GO_WRKSRC} && ${COPYTREE_SHARE} 'fonts i18n' ${STAGEDIR}${WWWDIR}
 	cd ${GO_WRKSRC}/templates && ${CP} *.html *.js ${STAGEDIR}${WWWDIR}/templates
+
+From OpenBSD port
+<https://cvsweb.openbsd.org/ports/net/mattermost-server/?sort=File>
+do-install:
+	${INSTALL_PROGRAM} ${MODGO_WORKSPACE}/bin/{mattermost,mmctl} \
+		${PREFIX}/bin/
+	${INSTALL_DATA_DIR} ${PREFIX}/share/mattermost/
+	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/mattermost/
+	cp ${WRKSRC}/server/config/config.json \
+		${PREFIX}/share/examples/mattermost/
+.for _d in client fonts i18n templates
+	cp -Rp ${WRKDIR}/mattermost/${_d} ${PREFIX}/share/mattermost/
+.endfor
 
 
 ### Setup
