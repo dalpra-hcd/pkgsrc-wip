@@ -7,7 +7,7 @@ MASTER_SITES=		${MASTER_SITE_GITLAB:=emersion/}
 GITLAB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		kikadf.01@gmail.com
-HOMEPAGE=		https://gitlab.freedesktop.org/emersion/kanshi
+HOMEPAGE=		https://gitlab.freedesktop.org/emersion/vali
 COMMENT=		C library and code generator for Varlink
 LICENSE=		mit
 
