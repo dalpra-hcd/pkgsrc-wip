@@ -56,10 +56,11 @@ FILES_SUBST+=		MATTERMOST_DATADIR=${MATTERMOST_DATADIR:Q}
 MAKE_ENV+=	BUILD_ENTERPRISE=false
 
 GOFLAGS+=	-ldflags=" \
-	-X github.com/mattermost/mattermost/server/public/model.BuildNumber=${PKGVERSION} \
-	-X github.com/mattermost/mattermost/server/public/model.BuildHash=none \
-	-X github.com/mattermost/mattermost/server/public/model.BuildHashEnterprise=none \
-	-X github.com/mattermost/mattermost/server/public/model.BuildEnterpriseReady=false"
+		-X ${GOFLAGPATH}/model.BuildNumber=${PKGVERSION} \
+		-X ${GOFLAGPATH}/model.BuildHash=none \
+		-X ${GOFLAGPATH}/model.BuildHashEnterprise=none \
+		-X ${GOFLAGPATH}/public/model.BuildEnterpriseReady=false"
+GOFLAGPATH=	github.com/mattermost/mattermost/server/public
 
 INSTALLATION_DIRS+=	sbin ${EGDIR}
 
