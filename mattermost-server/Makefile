@@ -18,6 +18,8 @@ PKG_SYSCONFSUBDIR=	mattermost
 
 #GO_VERSION_REQD=	125
 
+DEPENDS+=	daemonize>=1.7.8:../../sysutils/daemonize
+
 .include "go-modules.mk"
 
 # This needs to come before bsd.prefs.mk
@@ -26,6 +28,11 @@ PKG_SYSCONFSUBDIR=	mattermost
 .include "../../mk/bsd.prefs.mk"
 
 BUILD_DEFS+=		VARBASE MATTERMOST_USER MATTERMOST_GROUP
+
+MATTERMOST_LOGDIR=	${VARBASE}/log/mattermost
+MATTERMOST_DATADIR=	${VARBASE}/mattermost
+
+EGDIR=			share/examples/mattermost
 
 MATTERMOST_USER?=	mattermost
 MATTERMOST_GROUP?=	mattermost
@@ -42,8 +49,8 @@ PKG_SHELL.${MATTERMOST_USER}=	${NOLOGIN}
 RCD_SCRIPTS+=		mattermost
 FILES_SUBST+=		MATTERMOST_USER=${MATTERMOST_USER:Q}
 FILES_SUBST+=		MATTERMOST_GROUP=${MATTERMOST_GROUP:Q}
-#FILES_SUBST+=		MATTERMOST_DATADIR=${MATTERMOST_DATADIR:Q}
-#FILES_SUBST+=		MATTERMOST_LOGDIR=${MATTERMOST_LOGDIR:Q}
+FILES_SUBST+=		MATTERMOST_LOGDIR=${MATTERMOST_LOGDIR:Q}
+FILES_SUBST+=		MATTERMOST_DATADIR=${MATTERMOST_DATADIR:Q}
 
 # From Arch package
 MAKE_ENV+=	BUILD_ENTERPRISE=false
@@ -54,7 +61,13 @@ GOFLAGS+=	-ldflags=" \
 	-X github.com/mattermost/mattermost/server/public/model.BuildHashEnterprise=none \
 	-X github.com/mattermost/mattermost/server/public/model.BuildEnterpriseReady=false"
 
-INSTALLATION_DIRS+=	sbin
+INSTALLATION_DIRS+=	sbin ${EGDIR}
+
+OWN_DIRS_PERMS+=	${MATTERMOST_LOGDIR} ${MATTERMOST_USER} \
+				${MATTERMOST_GROUP} 0750
+OWN_DIRS+=		${MATTERMOST_DATADIR}
+OWN_DIRS_PERMS+=	${MATTERMOST_DATADIR}/data ${MATTERMOST_USER} \
+				${MATTERMOST_GROUP} 0750
 
 .include "go-modules.mk"
 

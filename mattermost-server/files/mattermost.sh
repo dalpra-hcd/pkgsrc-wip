@@ -1,61 +1,48 @@
-#!/bin/sh
-
-# PROVIDE: mattermostd
-# REQUIRE: DAEMON NETWORKING
-# BEFORE: LOGIN
+#!@RCD_SCRIPTS_SHELL@
+#
+# $NetBSD$
+#
+# PROVIDE: mattermost
+# REQUIRE: NETWORKING
+# BEFORE:  LOGIN
 # KEYWORD: shutdown
 
-# Add the following lines to /etc/rc.conf to enable mattermostdb:
-# mattermostd_enable="YES"
-#
-# mattermostd_enable (bool):        Set to YES to enable mattermostd
-#                                   Default: NO
-# mattermostd_conf (str):           mattermostd configuration file
-#                                   Default: ${PREFIX}/etc/mattermostd.conf
-# mattermostd_user (str):           mattermostd daemon user
-#                                   Default: mattermostd
-# mattermostd_group (str):          mattermostd daemon group
-#                                   Default: mattermostd
-# mattermostd_extraflags (str):     Extra flags passed to mattermostd
-#                                   Default: None
-# mattermostd_facility (str):       Syslog facility to use
-#                                   Default: daemon
-# mattermostd_priority (str):       Syslog priority to use
-#                                   Default: info
+name="mattermost"
 
-. /etc/rc.subr
+command="@PREFIX@/sbin/daemonize"
 
-name="mattermostd"
-rcvar=mattermostd_enable
-load_rc_config $name
+pidfile="@VARBASE@/run/${name}/${name}.pid"
 
-: ${mattermostd_enable:="NO"}
-: ${mattermostd_user:="mattermost"}
-: ${mattermostd_group:="mattermost"}
-: ${mattermostd_extraflags:=""}
-: ${mattermostd_facility:="daemon"}
-: ${mattermostd_priority:="info"}
-: ${mattermostd_tag:="mattermostd"}
-: ${mattermostd_conf:="%%PREFIX%%/etc/mattermost/config.json"}
+task="@PREFIX@/sbin/${name}"
+procname="${task}"
 
-# daemon
-pidfile=/var/run/${name}.pid
-procname=%%PREFIX%%/bin/${name}
-command=/usr/sbin/daemon
-command_args="-p ${pidfile} -S -s ${mattermostd_priority} -l ${mattermostd_facility} -T ${mattermostd_tag} ${procname} server ${mattermostd_extraflags} --config=${mattermostd_conf}"
-start_precmd=mattermostd_startprecmd
-mattermostd_chdir=%%PREFIX%%/www/mattermost
-required_files=${mattermostd_confg}
+command_args="-p ${pidfile} \
+    -u @MATTERMOST_USER@ \
+    -c @MATTERMOST_DATADIR@ \
+    -e @MATTERMOST_LOGDIR@/daemonize.stderr \
+    -o @MATTERMOST_LOGDIR@/daemonize.stdout"
 
-mattermostd_startprecmd()
+mattermost_precmd()
 {
-    if [ ! -e ${pidfile} ]; then
-            install -o ${mattermostd_user} -g ${mattermostd_group} /dev/null ${pidfile};
-    fi
-
-    if [ ! -d ${mattermostd_dir} ]; then
-            install -d -o ${mattermostd_user} -g ${mattermostd_group} ${mattermostd_dir}
-    fi
+        if [ ! -e "@VARBASE@/run/${name}" ] ; then
+                install -d -o @MATTERMOST_USER@ -g @MATTERMOST_GROUP@ \
+		    @VARBASE@/run/${name};
+        fi
 }
 
-run_rc_command "$1"
+if [ -f @SYSCONFBASE@/rc.subr ]; then
+    	. @SYSCONFBASE@/rc.subr
+
+	rcvar=${name}
+	required_files="@PKG_SYSCONFDIR@/config.json"
+	pidfile="@VARBASE@/run/${name}/${name}.pid"
+
+	start_precmd="mattermost_precmd"
+
+	load_rc_config ${name}
+	run_rc_command "$1"
+else
+        @ECHO@ -n " ${name}"
+	mattermost_precmd
+	${command} ${command_args}
+fi
