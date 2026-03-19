@@ -59,7 +59,7 @@ GOFLAGS+=	-ldflags=" \
 		-X ${GOFLAGPATH}/model.BuildNumber=${PKGVERSION} \
 		-X ${GOFLAGPATH}/model.BuildHash=none \
 		-X ${GOFLAGPATH}/model.BuildHashEnterprise=none \
-		-X ${GOFLAGPATH}/public/model.BuildEnterpriseReady=false"
+		-X ${GOFLAGPATH}/model.BuildEnterpriseReady=false"
 GOFLAGPATH=	github.com/mattermost/mattermost/server/public
 
 INSTALLATION_DIRS+=	sbin ${EGDIR}
