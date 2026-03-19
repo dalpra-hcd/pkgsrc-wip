@@ -21,6 +21,11 @@ SUBST_MESSAGE.path=	Fixing pathes
 SUBST_FILES.path+=	xcursor/xcursor.c
 SUBST_VARS.path+=	PREFIX X11BASE
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "NetBSD" && ${OS_VERSION} < 11
+PKG_FAIL_REASON+=	"DRM_IOCTL_GET_UNIQUE is not allowed on render nodes"
+.endif
+
 .include "options.mk"
 
 .include "../../devel/meson/build.mk"
