@@ -14,7 +14,12 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/sfwbar
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "FreeBSD"
+MESON_ARGS+=	-Dbsdctl=enabled
+.else
 MESON_ARGS+=	-Dbsdctl=disabled
+.endif
 MESON_ARGS+=	-Dpulse=disabled
 MESON_ARGS+=	-Dpipewire=disabled
 MESON_ARGS+=	-Dalsa=disabled
