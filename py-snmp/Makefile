@@ -14,6 +14,8 @@ DEPENDS+=	${PYPKGPREFIX}-asn1>=0.2.3:../../security/py-asn1
 #DEPENDS+=	${PYPKGPREFIX}-cryptodomex-[0-9]*:../../wip/py-cryptodomex
 DEPENDS+=	${PYPKGPREFIX}-smi-[0-9]*:../../wip/py-smi
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-poetry-core>=1.0:../../devel/py-poetry-core
+
 USE_LANGUAGES=	# none
 
 .include "../../lang/python/wheel.mk"
