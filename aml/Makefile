@@ -1,22 +1,29 @@
 # $NetBSD$
 
 DISTNAME=	aml-1.0.0
-CATEGORIES=	# TODO: add primary category
+CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=any1/}
-GITHUB_TAG=	refs/tags/v${PKGVERSION_NOREV}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	INSERT_YOUR_MAIL_ADDRESS_HERE # or use pkgsrc-users@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/any1/aml/
-COMMENT=	TODO: Short description of the package
-#LICENSE=	# TODO: (see mk/license.mk)
-
-WRKSRC=	${WRKDIR}/${DISTNAME}
+COMMENT=	Another main loop library
+LICENSE=	isc
 
 # -D_POSIX_C_SOURCE=200809L
 CFLAGS.NetBSD+=	-D_NETBSD_SOURCE=1
 
+USE_TOOLS+=	pkg-config
+
 PKGCONFIG_OVERRIDE+=		output/meson-private/aml1.pc
 PKGCONFIG_OVERRIDE_STAGE=	post-configure
+
+SUBST_CLASSES+=		nogit
+SUBST_STAGE.nogit=	pre-configure
+SUBST_MESSAGE.nogit=	Set version
+SUBST_FILES.nogit+=	meson.build
+SUBST_SED.nogit+=	-e 's/git =/\#git =/g'
+SUBST_SED.nogit+=	-e 's/git.found()/false/g'
 
 .include "../../devel/meson/build.mk"
 .include "../../mk/bsd.pkg.mk"
