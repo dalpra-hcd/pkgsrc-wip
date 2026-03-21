@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	pdfrip-2.0.1
+DISTNAME=	pdfrip-3.0.0
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mufeedvh/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
