@@ -1,0 +1,4 @@
+@comment $NetBSD$
+bin/wlrctl
+man/man1/wlrctl.1
+share/zsh/site-functions/_wlrctl
