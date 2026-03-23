@@ -4,6 +4,7 @@ DISTNAME=	wlrctl-0.2.2
 CATEGORIES=	x11
 MASTER_SITES=	https://git.sr.ht/~brocellous/wlrctl/archive/
 DISTFILES=	v${PKGVERSION_NOREV}${EXTRACT_SUFX}
+DIST_SUBDIR=	wlrctl
 
 MAINTAINER=	kikadf.01@gmail.com
 HOMEPAGE=	https://sr.ht/~brocellous/wlrctl/

@@ -4,6 +4,7 @@ DISTNAME=	basu-0.2.1
 CATEGORIES=	devel
 MASTER_SITES=	https://git.sr.ht/~emersion/basu/archive/
 DISTFILES=	v${PKGVERSION_NOREV}${EXTRACT_SUFX}
+DIST_SUBDIR=	basu
 
 MAINTAINER=	kikadf.01@gmail.com
 HOMEPAGE=	https://sr.ht/~emersion/basu/
