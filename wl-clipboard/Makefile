@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	wl-clipboard-2.2.1
+DISTNAME=	wl-clipboard-2.3.0
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bugaevc/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
