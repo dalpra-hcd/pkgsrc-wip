@@ -1,0 +1,4 @@
+@comment $NetBSD$
+bin/wlopm
+man/man1/wlopm.1
+share/bash-completion/completions/wlopm/bash-completion
