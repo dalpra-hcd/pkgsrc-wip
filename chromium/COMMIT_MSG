@@ -1,59 +1,22 @@
-www/chromium: update to 146.0.7680.153
+www/chromium: update to 146.0.7680.164
 
-* 146.0.7680.153
-This update includes 26 security fixes. Please see the
+* 146.0.7680.164
+This update includes 8 security fixes. Please see the
 Chrome Security Page for more information.
-[TBD][475877320] Critical CVE-2026-4439: Out of bounds memory access
-in WebGL. Reported by Goodluck on 2026-01-15
-[TBD][485935305] Critical CVE-2026-4440: Out of bounds read and write
-in WebGL. Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-02-20
-[TBD][489381399] Critical CVE-2026-4441: Use after free in Base.
-Reported by Google on 2026-03-03
-[TBD][484751092] High CVE-2026-4442: Heap buffer overflow in CSS.
-Reported by Syn4pse on 2026-02-16
-[TBD][485292589] High CVE-2026-4443: Heap buffer overflow in WebAudio.
+[$7000][485397284] High CVE-2026-4673: Heap buffer overflow in WebAudio.
 Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-02-18
-[TBD][486349161] High CVE-2026-4444: Stack buffer overflow in WebRTC.
-Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-02-21
-[TBD][486421953] High CVE-2026-4445: Use after free in WebRTC.
-Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-02-22
-[TBD][486421954] High CVE-2026-4446: Use after free in WebRTC.
-Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-02-22
-[TBD][486657483] High CVE-2026-4447: Inappropriate implementation
-in V8. Reported by Erge on 2026-02-23
-[TBD][486972661] High CVE-2026-4448: Heap buffer overflow in ANGLE.
-Reported by M. Fauzan Wijaya (Gh05t666nero) on 2026-02-23
-[TBD][487117772] High CVE-2026-4449: Use after free in Blink.
-Reported by Syn4pse on 2026-02-24
-[TBD][487746373] High CVE-2026-4450: Out of bounds write in V8.
-Reported by qymag1c on 2026-02-26
-[TBD][487768779] High CVE-2026-4451: Insufficient validation of
-untrusted input in Navigation.
-Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-02-26
-[TBD][487977696] High CVE-2026-4452: Integer overflow in ANGLE.
-Reported by cinzinga on 2026-02-26
-[TBD][488400770] High CVE-2026-4453: Integer overflow in Dawn.
-Reported by sweetchip on 2026-02-27
-[TBD][488585488] High CVE-2026-4454: Use after free in Network.
-Reported by heapracer (@heapracer) on 2026-03-01
-[TBD][488585504] High CVE-2026-4455: Heap buffer overflow in PDFium.
-Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-03-01
-[TBD][488617440] High CVE-2026-4456: Use after free in Digital
-Credentials API. Reported by sean wong on 2026-02-28
-[TBD][488803413] High CVE-2026-4457: Type Confusion in V8.
-Reported by Zhenpeng (Leo) Lin at depthfirst on 2026-03-01
-[TBD][489619753] High CVE-2026-4458: Use after free in Extensions.
-Reported by Shaheen Fazim on 2026-03-04
-[TBD][490246422] High CVE-2026-4459: Out of bounds read and write
-in WebAudio. Reported by Jihyeon Jeong (Compsec Lab, Seoul National
-University / Research Intern) on 2026-03-06
-[TBD][490254124] High CVE-2026-4460: Out of bounds read in Skia.
-Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-03-06
-[TBD][490558172] High CVE-2026-4461: Inappropriate implementation
-in V8. Reported by Google on 2026-03-07
-[TBD][491080830] High CVE-2026-4462: Out of bounds read in Blink.
-Reported by heapracer (@heapracer) on 2026-03-09
-[TBD][491358681] High CVE-2026-4463: Heap buffer overflow in WebRTC.
-Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-03-10
-[TBD][487208468] Medium CVE-2026-4464: Integer overflow in ANGLE.
-Reported by heesun on 2026-02-24
+[TBD][488188166] High CVE-2026-4674: Out of bounds read in CSS.
+Reported by Syn4pse on 2026-02-27
+[TBD][488270257] High CVE-2026-4675: Heap buffer overflow in WebGL.
+Reported by 86ac1f1587b71893ed2ad792cd7dde32 on 2026-02-27
+[TBD][488613135] High CVE-2026-4676: Use after free in Dawn.
+ Reported by 86ac1f1587b71893ed2ad792cd7dde32 on 2026-03-01
+[TBD][490533968] High CVE-2026-4677: Out of bounds read in WebAudio.
+Reported by c6eed09fc8b174b0f3eebedcceb1e792 on 2026-03-07
+[TBD][491164019] High CVE-2026-4678: Use after free in WebGPU.
+Reported by Google on 2026-03-10
+[TBD][491516670] High CVE-2026-4679: Integer overflow in Fonts.
+Reported by GF, Un3xploitable Of DeadSec on 2026-03-11
+[TBD][491869946] High CVE-2026-4680: Use after free in FedCM.
+Reported by Shaheen Fazim on 2026-03-12
+
