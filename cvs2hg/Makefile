@@ -3,7 +3,7 @@
 PKGNAME=		cvs2hg-2.1
 CATEGORIES=		devel scm
 
-MAINTAINER=		wiz@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 #HOMEPAGE=		https://www.pkgsrc.org/
 COMMENT=		Convert CVS repository to Mercurial
 LICENSE=		2-clause-bsd

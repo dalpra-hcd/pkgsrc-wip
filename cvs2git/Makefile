@@ -3,7 +3,7 @@
 PKGNAME=		cvs2git-3.0
 CATEGORIES=		devel scm
 
-MAINTAINER=		wiz@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 #HOMEPAGE=		https://www.pkgsrc.org/
 COMMENT=		Convert CVS repository to git
 LICENSE=		2-clause-bsd
