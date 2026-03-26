@@ -5202,6 +5202,7 @@ SUBDIR+=	riscv64-none-elf-binutils
 SUBDIR+=	riscv64-none-elf-binutils.old
 SUBDIR+=	riscv64-none-elf-gcc
 SUBDIR+=	riscv64-none-elf-gdb
+SUBDIR+=	riscv64-none-elf-xuantie-binutils
 SUBDIR+=	riscv64-none-elf-xuantie-gcc
 SUBDIR+=	rk
 SUBDIR+=	rkbin

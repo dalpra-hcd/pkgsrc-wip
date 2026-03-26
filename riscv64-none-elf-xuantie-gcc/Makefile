@@ -1,11 +1,11 @@
 # $NetBSD: Makefile,v 1.3 2024/05/13 23:08:56 gutteridge Exp $
 
-GIT_BRANCH=		xuantie-gcc-10.2.0
-DISTNAME=		gcc-${THEADVER}
+GIT_BRANCH=		xuantie-${GITHUB_PROJECT}-10.2.0
+DISTNAME=		${GITHUB_PROJECT}-${THEADVER}
 PKGNAME=		cross-riscv64-none-elf-${GIT_BRANCH}
 CATEGORIES=		cross
 THEADVER=		THead-2.6.1
-NEWLIBVER=		THead-2.6.1	#3.2.0
+NEWLIBVER=		THead-2.6.1	# newlib-3.2.0
 MASTER_SITES=		${MASTER_SITE_GITHUB:=XUANTIE-RV/}
 GITHUB_PROJECT=		gcc
 GITHUB_TAG=		refs/tags/${THEADVER}
@@ -29,7 +29,7 @@ TOOL_DEPENDS+=			gtexinfo>=5.1:../../devel/gtexinfo
 _TOOLS_USE_PKGSRC.makeinfo=	yes
 TOOL_DEPENDS+=			coreutils>=0:../../sysutils/coreutils
 
-DEPENDS+=		cross-riscv64-none-elf-binutils-[0-9]*:../../cross/riscv64-none-elf-binutils
+DEPENDS+=		cross-riscv64-none-elf-xuantie-binutils-[0-9]*:../../wip/riscv64-none-elf-xuantie-binutils
 
 USE_LANGUAGES+=		c c++
 
@@ -44,6 +44,7 @@ CONFIGURE_SCRIPT=	${WRKSRC}/configure
 CONFIG_SHELL=		${TOOLS_PATH.bash}
 WRAPPER_SHELL=		${TOOLS_PATH.bash}
 USE_TOOLS+=		bash gmake gsed makeinfo perl
+TOOL_DEPENDS+=		coreutils-[0-9]*:../../sysutils/coreutils
 
 GNU_CONFIGURE=		yes
 GNU_CONFIGURE_STRICT=	no # has sub-configures
@@ -51,6 +52,8 @@ GNU_CONFIGURE_PREFIX=	${RISCV64ELF_PREFIX}
 
 CONFIGURE_ARGS+=	--target=riscv64-none-elf
 CONFIGURE_ARGS+=	--enable-languages=c,c++
+CONFIGURE_ARGS+=	--with-arch=rv64gc
+CONFIGURE_ARGS+=	--with-abi=lp64d
 CONFIGURE_ARGS+=	--with-newlib
 CONFIGURE_ARGS+=	--disable-multilib
 CONFIGURE_ARGS+=	--disable-nls
